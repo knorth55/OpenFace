@@ -37,5 +37,5 @@ include_directories(${LandmarkDetector_SOURCE_DIR}/include)
 
 add_library( LandmarkDetector ${SOURCE} ${HEADERS})
 
-install (TARGETS LandmarkDetector DESTINATION bin)
+install (TARGETS LandmarkDetector DESTINATION lib)
 install (FILES ${HEADERS} DESTINATION include)
