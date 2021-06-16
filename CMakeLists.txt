@@ -26,7 +26,7 @@ find_package(dlib REQUIRED)
 
 find_package(TBB REQUIRED)
 
-include(cmake_find_blas.txt)
+include(cmake/cmake_find_blas.txt)
 
 # Move LandmarkDetector model
 file(GLOB files "lib/local/LandmarkDetector/model/*.txt")
