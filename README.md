@@ -1,6 +1,6 @@
 # OpenFace: an open source facial behavior analysis toolkit
 
-this is for Ubuntu 18.40 + melodic build
+this is for Ubuntu 18.0 + melodic build
 
 ## Dependencies
 
