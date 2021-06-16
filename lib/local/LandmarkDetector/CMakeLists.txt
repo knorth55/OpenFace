@@ -36,6 +36,7 @@ include_directories(./include)
 include_directories(${LandmarkDetector_SOURCE_DIR}/include)
 
 add_library( LandmarkDetector ${SOURCE} ${HEADERS})
+target_link_libraries(LandmarkDetector ${lapack_libraries})
 
 install (TARGETS LandmarkDetector DESTINATION lib/openface)
 install (FILES ${HEADERS} DESTINATION include/openface)

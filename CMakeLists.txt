@@ -22,7 +22,11 @@ INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS}/boost)
 LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})	
 
+find_package(dlib REQUIRED)
+
 find_package(TBB REQUIRED)
+
+include(cmake_find_blas.txt)
 
 # Move LandmarkDetector model
 file(GLOB files "lib/local/LandmarkDetector/model/*.txt")
@@ -76,17 +80,6 @@ foreach(file ${files})
 	endif(MSVC)
 endforeach()
 
-# Move OpenCV classifiers
-file(GLOB files "lib/3rdParty/OpenCV3.1/classifiers/*.xml")
-foreach(file ${files})
-	if (MSVC)
-		file(COPY ${file} DESTINATION ${CMAKE_BINARY_DIR}/bin/Debug/classifiers)
-		file(COPY ${file} DESTINATION ${CMAKE_BINARY_DIR}/bin/Release/classifiers)
-	else(MSVC)
-		file(COPY ${file} DESTINATION ${CMAKE_BINARY_DIR}/bin/classifiers)
-	endif(MSVC)
-endforeach()
-
 # Move AU prediction modules
 file(GLOB files "lib/local/FaceAnalyser/AU_predictors/*.txt")
 foreach(file ${files})
@@ -131,20 +124,8 @@ else ()
     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -msse -msse2 -msse3")
 endif ()
 
-# Boost
-if(WIN32)
-	include_directories(lib/3rdParty/boost)
-	include_directories(lib/3rdParty/boost/boost)
-	link_directories( ${PROJECT_SOURCE_DIR}/lib/3rdParty/boost/lib )
-else()
-	INCLUDE_DIRECTORIES(${BOOST_INCLUDE_DIR})
-endif()
-
-# dlib
-include_directories(lib/3rdParty/dlib/include)
-
-# dlib library
-add_subdirectory(lib/3rdParty/dlib)
+INCLUDE_DIRECTORIES(${BOOST_INCLUDE_DIR})
+INCLUDE_DIRECTORIES(${DLIB_INCLUDE_DIR})
 
 # LandmarkDetector library
 add_subdirectory(lib/local/LandmarkDetector)

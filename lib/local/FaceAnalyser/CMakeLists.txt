@@ -28,6 +28,7 @@ include_directories(${FACEANALYSER_SOURCE_DIR}/include)
 include_directories(../LandmarkDetector/include)
 
 add_library( FaceAnalyser ${SOURCE} ${HEADERS})
+target_link_libraries(FaceAnalyser ${blas_libraries})
 
 install (TARGETS FaceAnalyser DESTINATION lib/openface)
 install (FILES ${HEADERS} DESTINATION include/openface)
